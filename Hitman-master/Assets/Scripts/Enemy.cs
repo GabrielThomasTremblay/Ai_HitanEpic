@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent m_Agent;
     private Rigidbody m_Rigidbody;
     private MeshRenderer m_Renderer;
-    [SerializeField] private MeshCollider m_Sight;
+    [SerializeField] private SphereCollider m_Sight;
     [SerializeField] private GameObject[] m_PatrolPoint;
     [SerializeField] private int m_currPoint;
     [SerializeField] public int state;
@@ -93,5 +93,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        if (other.CompareTag("Player"))
+        {
+            if (m_isGuard == false)
+            {
+                state = 2;
+            }
+            
+        }
+    }
+
+
 }
